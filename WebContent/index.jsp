@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>GESTOECON- PAGINA INICIAL</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>GESTOECON- PAGINA INICIAL</title>
+    </head>
 
-<body>
+    <body>
 
-	<jsp:include page="cabecalho.jsp"></jsp:include>
+        <jsp:include page="cabecalho.jsp"></jsp:include>
 
-<div class="container">
-	<div class="page-header">
-		<h3>
-			Bem vindo ao GestoEcon
-		</h3>
-	</div>
-	<br>
-	<br>
-	<center>
+        <div class="container">
+            <div class="page-header">
+                <h3>
+                    Bem vindo ao GestoEcon
+                </h3>
+            </div>
 
-		<div class="row">
-			
-		</div>
-</div>
+            <center>
+
+                <div class="row">
+                    <form action="ManterUsuario" method="post" class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">E-Mail</label>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" value="" required="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Senha</label>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" name="senha" required="true">
+                            </div>
+                        </div>
+
+                        <input type  = "hidden" name = "acao" value ="autenticarUsuario">
+                        <input type="submit" value="Entrar" class="btn btn-success">
+                        <input type="reset" value="Limpar" class="btn btn-warning">
+                        <br>
+                    </form>
+                    <br>
+                </div>
+        </div>
 
 
-	
 
-
-<form action="ManterUsuario" method="post">
-Email: <input type="email" name="email" required="required"> <br>
-Senha: <input type="password" name="senha" required="required"> <br> <br>
-
-<input type  = "hidden" name = "acao" value ="autenticarUsuario">
-<input type="submit" value="Entrar">
-<input type="reset" value="Limpar">
-<br>
-</form>
-<br>
-<input type="submit" value="CADASTRE-SE" onclick = "location.href ='usuario/usuarioInserir.jsp'" >
-
-
-</center>
+    </center>
 
 
 

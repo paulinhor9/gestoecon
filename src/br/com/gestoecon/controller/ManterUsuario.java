@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.gestoecon.bean.UsuarioVO;
 import br.com.gestoecon.dao.UsuarioDAO;
@@ -27,6 +28,8 @@ public class ManterUsuario extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
+		
+		
 
 		/** AUTENTICAR USUARIO. */
 
@@ -42,12 +45,33 @@ public class ManterUsuario extends HttpServlet {
 					.consultarUsuario(email);
 			RequestDispatcher direcionador;
 			if (objUsuario.getSenha().trim().equals(senha.trim())) {
-				request.getSession(true).setAttribute("usuarioOK", objUsuario);
-				direcionador = request.getRequestDispatcher("Home.jsp");
+				request.getSession().setAttribute("usuarioOK", objUsuario);
+				//request.getRequestDispatcher("Home.jsp").forward(request, response);
+				response.sendRedirect("Home.jsp");
 			} else
-				direcionador = request.getRequestDispatcher("falhaLogin.jsp");
-			direcionador.forward(request, response);
+				//request.getRequestDispatcher("falhaLogin.jsp").forward(request, response);
+				response.sendRedirect("falhaLogin.jsp");
 		}
+		
+		
+		/**
+		 * FINALIZAR SESSÃO.
+		 */
+		
+		if(acao.equals("sair")){
+			HttpSession session = request.getSession();
+			Object usuarioLogado = session.getAttribute("usuarioOK");
+			if(usuarioLogado != null){
+				session.removeAttribute("usuarioOk");
+				session.invalidate();
+				
+				response.sendRedirect("index.jsp");
+			}
+			else{
+				response.sendRedirect("index.jsp");
+			}
+		}
+		
 		/** INSERIR USUARIO */
 
 		else if (acao.equals("inserirUsuario")) {

@@ -37,7 +37,7 @@ public class SecureFilter implements Filter {
 		
 		HttpSession session = req.getSession();
 
-		if (session.getAttribute("usuarioOK") == null) {
+		if (session == null && session.getAttribute("usuarioOK") == null) {
 			RequestDispatcher direcionador = request
 					.getRequestDispatcher("index.jsp");
 			direcionador.forward(request, response);

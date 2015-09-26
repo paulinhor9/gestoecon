@@ -24,7 +24,7 @@
 	
 	</form>
 	<br>
-	<input type="submit" value="Voltar" onclick = "location.href ='../index.html'" >
+	<input type="submit" value="Voltar" onclick = "location.href ='../index.jsp'" >
 		</center>
 </body>
 </html>
