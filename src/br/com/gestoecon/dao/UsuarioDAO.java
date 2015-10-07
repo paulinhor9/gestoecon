@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 import br.com.gestoecon.bean.UsuarioVO;
 
 public class UsuarioDAO {

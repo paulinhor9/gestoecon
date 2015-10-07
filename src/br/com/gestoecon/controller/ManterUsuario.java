@@ -142,7 +142,7 @@ public class ManterUsuario extends HttpServlet {
 					objUsuario.listarUsuario());
 
 			RequestDispatcher direcionador = request
-					.getRequestDispatcher("Home.jsp");
+					.getRequestDispatcher("../usuario/usuarioListar.jsp");
 			direcionador.forward(request, response);
 		}
 
@@ -160,7 +160,7 @@ public class ManterUsuario extends HttpServlet {
 					objUsuario.listarUsuario());
 
 			RequestDispatcher direcionador = request
-					.getRequestDispatcher("usuario/usuarioListar.jsp");
+					.getRequestDispatcher("../usuario/usuarioListar.jsp");
 			direcionador.forward(request, response);
 
 		}
