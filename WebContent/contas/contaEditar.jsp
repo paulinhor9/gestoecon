@@ -5,13 +5,13 @@
 	ContaVO conta = (ContaVO) request.getAttribute("conta");
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Inserir nova conta</title>
+<title>Editar Conta</title>
 </head>
 <jsp:include page="../cabecalho.jsp"></jsp:include>
 <body>
 <jsp:include page="../menu.jsp"></jsp:include>
 	GestoEcon
-	<br> CADASTRAR CONTA. 
+	<br> Editar Conta. 
 	<br>
 	<br>
 	<center>
@@ -24,7 +24,7 @@
 			<br>
 			<input type="submit" value="Salvar"><input type="reset"
 				value="Limpar"><a href="ManterConta?acao=listarConta">
-				"Cancelar"</a> <BR>
+				"VOLTAR"</a> <BR>
 		</form>
 	</center>
 

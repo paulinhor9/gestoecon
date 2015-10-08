@@ -10,10 +10,10 @@
 <body>
 
 	<div class="container">
-		<h1>Sua conta foi removida!</h1>
+		<h1>Conta removida!</h1>
 		<p>
-			Acesse a <a href="../ManterConta?acao=listarConta">lista de
-				contas</a>
+				<!-- REDIRECIONADOR -->
+	<meta http-equiv="refresh" content="2; url=../ManterConta?acao=listarConta">	
 		</p>
 	</div>
 

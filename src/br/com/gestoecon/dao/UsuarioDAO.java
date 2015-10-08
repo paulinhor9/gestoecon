@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.gestoecon.bean.UsuarioVO;
 
@@ -37,7 +38,7 @@ public class UsuarioDAO {
 	// EXCLUIR USUARIO DO BANCO DE DADOS.
 
 	public void excluirUsuario(UsuarioVO objUsuario) {
-		String sqlExclusao = "delete from usuario where (email,senha) = (?,?)";
+		String sqlExclusao = "delete from usuario where email = ?";
 		PreparedStatement pstm = null;
 		Connection objCon = null;
 
@@ -45,23 +46,54 @@ public class UsuarioDAO {
 			objCon = ConexaoDAO.getConnection();
 			pstm = objCon.prepareStatement(sqlExclusao);
 			pstm.setString(1, objUsuario.getEmail());
-			pstm.setString(2, objUsuario.getSenha());
-
 			pstm.executeUpdate();
 			System.out.println("Exclusao Feita com Sucesso!");
 		} catch (Exception e) {
-			System.out.println("Erro na exclusao do Usuario!\nMotivo: "
-					+ e.getMessage());
+			System.out.println("Erro na exclusao da Conta!\nMotivo: " + e.getMessage());
 		} finally {
 			ConexaoDAO.closeConnection(objCon);
 		}
 
 	}
+	
+	/** LISTAR USUARIO */
+
+	public static List<UsuarioVO> listarUsuario() {
+
+		List<UsuarioVO> lista = new ArrayList<UsuarioVO>();
+
+		String sqlLista = "select * from usuario";
+		PreparedStatement pstm = null;
+		Connection objCon = null;
+
+		try {
+			objCon = ConexaoDAO.getConnection();
+			pstm = objCon.prepareStatement(sqlLista);
+
+			// Commit no banco
+			ResultSet rs = pstm.executeQuery();
+			// Tirando do Resultset e colocando no objeto usuario
+			while (rs.next()) {
+				UsuarioVO objUsuario = new UsuarioVO();
+				objUsuario.setEmail(rs.getString("email"));
+				objUsuario.setNome(rs.getString("nome"));
+				objUsuario.setSenha(rs.getString("senha"));
+
+				lista.add(objUsuario);
+			}
+			pstm.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+
 
 	// ALTERANDO USUARIO DO BANCO DE DADOS.
 
-	public static void alterarUsuario(UsuarioVO objUsuario) {
-		String sqlAtualizacao = "update usuario set email =?, nome =?, senha =?  where email = ?";
+	public static void alterarUsuario(UsuarioVO objUsuario ) {
+		String sqlAtualizacao = "update usuario set email=? nome =?, senha =? where email = ?";
 		PreparedStatement pstm = null;
 		Connection objCon = null;
 
@@ -70,11 +102,12 @@ public class UsuarioDAO {
 			pstm = objCon.prepareStatement(sqlAtualizacao);
 			pstm.setString(1, objUsuario.getEmail());
 			pstm.setString(2, objUsuario.getNome());
-			pstm.setString(3, objUsuario.getSenha());
+			pstm.setString(2, objUsuario.getSenha());
+			pstm.setString(4, objUsuario.getEmail());
 			
 			
 			pstm.executeUpdate();
-			System.out.println("Atualizacao Feita com Sucesso!");
+			System.out.println("Atualizacao de usuario Feita com Sucesso!");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Erro na atualizacao do Usuario");
@@ -88,7 +121,7 @@ public class UsuarioDAO {
 
 	public static UsuarioVO consultarUsuario(String email) {
 		UsuarioVO objUsuario = new UsuarioVO();
-		String sqlConsulta = "select email, nome, senha from usuario where email =  ?";
+		String sqlConsulta = "select * from usuario where email = ?";
 		PreparedStatement pstm = null;
 		Connection objCon = null;
 		ResultSet rs = null;
@@ -108,7 +141,7 @@ public class UsuarioDAO {
 				objUsuario.setSenha(rs.getString("senha"));
 			}
 		} catch (SQLException e) {
-			System.out.println("Erro na consulta do Usuario!\nMotivo: "
+			System.out.println("Erro na consulta de usuario!\nMotivo: "
 					+ e.getMessage());
 		} finally {
 			ConexaoDAO.closeConnection(objCon);
@@ -116,25 +149,11 @@ public class UsuarioDAO {
 		return objUsuario;
 	}
 
-		/** LISTAR USUARIOS */
 	
-	public ResultSet listarUsuario() {
-		PreparedStatement pstm = null;
-		Connection objCon = null;
-		ResultSet rs = null;
-
-		String sqlListar = "select login, nome, senha from usuario";
-		try {
-			objCon = ConexaoDAO.getConnection();
-			Statement st = objCon.createStatement();
-			rs = st.executeQuery(sqlListar);
-
-		} catch (Exception e) {
-			System.out.println("Erro na listagem de Usuarios");
-		} finally {
-			ConexaoDAO.closeConnection(objCon);
-		}
-		return rs;
-	}
+	
+	
+	
+	
+	
 
 }

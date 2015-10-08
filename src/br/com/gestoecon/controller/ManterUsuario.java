@@ -1,6 +1,7 @@
 package br.com.gestoecon.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,12 +25,10 @@ public class ManterUsuario extends HttpServlet {
 		super();
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
-		
-		
 
 		/** AUTENTICAR USUARIO. */
 
@@ -41,37 +40,36 @@ public class ManterUsuario extends HttpServlet {
 
 			// VALIDAR LOGIN E SENHA
 
-			UsuarioVO objUsuario = br.com.gestoecon.dao.UsuarioDAO
-					.consultarUsuario(email);
+			UsuarioVO objUsuario = br.com.gestoecon.dao.UsuarioDAO.consultarUsuario(email);
 			RequestDispatcher direcionador;
 			if (objUsuario.getSenha().trim().equals(senha.trim())) {
 				request.getSession().setAttribute("usuarioOK", objUsuario);
-				//request.getRequestDispatcher("Home.jsp").forward(request, response);
+				// request.getRequestDispatcher("Home.jsp").forward(request,
+				// response);
 				response.sendRedirect("Home.jsp");
 			} else
-				//request.getRequestDispatcher("falhaLogin.jsp").forward(request, response);
+				// request.getRequestDispatcher("falhaLogin.jsp").forward(request,
+				// response);
 				response.sendRedirect("falhaLogin.jsp");
 		}
-		
-		
+
 		/**
 		 * FINALIZAR SESSÃO.
 		 */
-		
-		if(acao.equals("sair")){
+
+		if (acao.equals("sair")) {
 			HttpSession session = request.getSession();
 			Object usuarioLogado = session.getAttribute("usuarioOK");
-			if(usuarioLogado != null){
+			if (usuarioLogado != null) {
 				session.removeAttribute("usuarioOk");
 				session.invalidate();
-				
+
 				response.sendRedirect("index.jsp");
-			}
-			else{
+			} else {
 				response.sendRedirect("index.jsp");
 			}
 		}
-		
+
 		/** INSERIR USUARIO */
 
 		else if (acao.equals("inserirUsuario")) {
@@ -92,78 +90,69 @@ public class ManterUsuario extends HttpServlet {
 
 		else if (acao.equals("excluirUsuario")) {
 
+			String email = request.getParameter("email");
 			UsuarioVO objUsuario = new UsuarioVO();
+			objUsuario.setEmail(email);
+			
+			UsuarioDAO usuarioDAO = new UsuarioDAO();
+			usuarioDAO.excluirUsuario(objUsuario);
+			response.sendRedirect("usuario/usuarioExcluirSucesso.jsp");
+			
 
-			// Quando você logou colocou o objeto na session...recuperando
-			// abaixo
-			objUsuario = (UsuarioVO) request.getSession().getAttribute(
-					"usuarioOK");
-
-			// Caso a senha e email informados não sejam iguais a do usuário
-			// logado um exceção sobe.
-			if (!objUsuario.getEmail().equals(request.getParameter("email"))
-					&& !objUsuario.getSenha().equals(
-							request.getParameter("senha"))) {
-				// dpois você arruma para mostrar na tela essa mensagem
-				System.out.println("Dados não conferem");
-
-			} else { // usando else para facilitar, mas o melhor seria throws
-						// exception e apresentar mensagem
-
-				UsuarioDAO UsuarioDAO = new UsuarioDAO();
-				UsuarioDAO.excluirUsuario(objUsuario);
-				response.sendRedirect("usuario/usuarioExcluirSucesso.jsp");
-			}
-		}
-
-		/** ALTERAR USUARIO */
-
-		else if (acao.equals("alterarUsuario")) {
-
+		/** ATUALIZAR USUARIO */
+			
+			}	else if (acao.equals("atualizarUsuario")) {
 			String email = request.getParameter("email");
 			String nome = request.getParameter("nome");
 			String senha = request.getParameter("senha");
 
-			// CRIANDO O OBJETO USUARIO
-			UsuarioVO objUsuario = new UsuarioVO(email, nome, senha);
+			UsuarioDAO usuarioDAO = new UsuarioDAO();
+			
+			UsuarioVO objUsuario = usuarioDAO.consultarUsuario(email);
 
-			// INSERINDO AS INFORMAÇÕES DO USUARIO
-			UsuarioDAO.alterarUsuario(objUsuario);
-			response.sendRedirect("usuario/usuarioAlterarSucesso.jsp");
+			objUsuario.setEmail(email);
+			objUsuario.setNome(nome);
+			objUsuario.setSenha(senha);
 
+			usuarioDAO.alterarUsuario(objUsuario);
+
+			// request.getRequestDispatcher("ManterConta?acao=listarUsuario").forward(request,
+			// response);
+			response.sendRedirect("ManterUsuario?acao=listarUsuario");
 		}
-
-		/** LISTAR USUARIO */
-		else if (acao.equals("listarUsuario")) {
-
-			UsuarioDAO objUsuario = new UsuarioDAO();
-
-			request.getSession(true).setAttribute("lista",
-					objUsuario.listarUsuario());
-
-			RequestDispatcher direcionador = request
-					.getRequestDispatcher("../usuario/usuarioListar.jsp");
-			direcionador.forward(request, response);
-		}
-
 	}
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String acao = request.getParameter("acao");
 
+	/** LISTA USUARIO */	
+		
 		if (acao.equals("listarUsuario")) {
 
-			UsuarioDAO objUsuario = new UsuarioDAO();
+			// BUscando a lista do banco
+			List<UsuarioVO> lista = UsuarioDAO.listarUsuario();
 
-			request.getSession(true).setAttribute("lista",
-					objUsuario.listarUsuario());
+			// Colocando a lista como atributo para o jsp acesssa como parametro
+			request.setAttribute("listaUsuario", lista);
 
-			RequestDispatcher direcionador = request
-					.getRequestDispatcher("../usuario/usuarioListar.jsp");
-			direcionador.forward(request, response);
+			// Encaminhando para o jsp
+			request.getRequestDispatcher("usuario/usuarioListar.jsp").forward(request, response);
+		
+	/** EDITAR USUARIO */	
+			
+		} else if (acao.equals("editarUsuario")) {
+			String email = request.getParameter("email");
+			UsuarioDAO usuarioDAO = new UsuarioDAO();
+			
+			UsuarioVO objUsuario = usuarioDAO.consultarUsuario(email);
+			
+			request.setAttribute("usuarioOk", objUsuario);
+			request.getRequestDispatcher("usuario/usuarioEditar.jsp").forward(request, response);
 
 		}
+
 	}
 
 }

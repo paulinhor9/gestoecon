@@ -7,9 +7,17 @@
 <title>FALHA LOGIN</title>
 </head>
 <body>
+ <div class="alert alert-danger">
+    <strong>Erro!</strong> 
+<br> Email ou senha Incorreto.
 
-DESCULPE-NOS, OCORREU UM ERRO. 
-TENTE NOVAMENTE!
+<br> Tente Novamente!!! 
+<br>
 
+<a href="index.jsp" class="btn btn-warning">Voltar</a></td>
+
+
+  </div>
+</div>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <html>
 <head>
 <%
-	//nao ia funcionar nada, o metodo listar do DAO ta retornando um arraylist, e aqui vc ta pegando resultset
+	
 	List<ContaVO> contas = (List<ContaVO>) request.getAttribute("listaConta");
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -72,7 +72,7 @@
 					</tr>
 
 				</table>
-
+<center><li class="btn btn-home"><a href="Home.jsp"> Página Inicial</a></li> </center>
 			</div>
 		</div>
 	</div>

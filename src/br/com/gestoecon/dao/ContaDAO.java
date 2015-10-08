@@ -48,7 +48,7 @@ public class ContaDAO {
 			pstm.executeUpdate();
 			System.out.println("Exclusao Feita com Sucesso!");
 		} catch (Exception e) {
-			System.out.println("Erro na exclusao do Usuario!\nMotivo: " + e.getMessage());
+			System.out.println("Erro na exclusao da Conta!\nMotivo: " + e.getMessage());
 		} finally {
 			ConexaoDAO.closeConnection(objCon);
 		}
@@ -88,7 +88,7 @@ public class ContaDAO {
 	}
 
 
-	// ALTERANDO USUARIO DO BANCO DE DADOS.
+	// ALTERANDO CONTA DO BANCO DE DADOS.
 
 	public static void alterarConta(ContaVO objConta) {
 		String sqlAtualizacao = "update conta set nome =?, saldo =? where id = ?";

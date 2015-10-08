@@ -33,12 +33,12 @@ public class ManterConta extends HttpServlet {
 
 		if (acao.equals("inserirConta")) {
 			String nome = request.getParameter("nome");
-			//double saldo = Double.valueOf(request.getParameter("saldo"));
+			// double saldo = Double.valueOf(request.getParameter("saldo"));
 			double saldo = Double.parseDouble(request.getParameter("saldo"));
 
 			// CRIANDO O OBJETO CONTA
 			ContaVO objConta = new ContaVO();
-			
+
 			objConta.setNome(nome);
 			objConta.setSaldo(saldo);
 
@@ -54,29 +54,31 @@ public class ManterConta extends HttpServlet {
 
 			int id = Integer.parseInt(request.getParameter("id"));
 			ContaVO objConta = new ContaVO();
-			
+
 			objConta.setId(id);
 
 			ContaDAO contaDAO = new ContaDAO();
 			contaDAO.excluirConta(objConta);
 			response.sendRedirect("contas/contaExcluirSucesso.jsp");
+			
+		/** ATUALIZAR CONTA */	
 
-		}
-		else if(acao.equals("atualizarConta")){
+		} else if (acao.equals("atualizarConta")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			String nome = request.getParameter("nome");
 			Double saldo = Double.parseDouble(request.getParameter("saldo"));
-			
+
 			ContaDAO contaDAO = new ContaDAO();
-			
+
 			ContaVO conta = contaDAO.consultarConta(id);
-			
+
 			conta.setNome(nome);
 			conta.setSaldo(saldo);
-			
+
 			contaDAO.alterarConta(conta);
-			
-			//request.getRequestDispatcher("ManterConta?acao=listarConta").forward(request, response);
+
+			// request.getRequestDispatcher("ManterConta?acao=listarConta").forward(request,
+			// response);
 			response.sendRedirect("ManterConta?acao=listarConta");
 		}
 	}
@@ -85,30 +87,33 @@ public class ManterConta extends HttpServlet {
 			throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
+
+	/** LISTAR CONTAS */	
 		
-		 if (acao.equals("listarConta")) {
+		if (acao.equals("listarConta")) {
 
-				// BUscando a lista do banco
-				List<ContaVO> lista = ContaDAO.listarConta();
+			// BUscando a lista do banco
+			List<ContaVO> lista = ContaDAO.listarConta();
 
-				// Colocando a lista como atributo para o jsp acesssa como parametro
-				request.setAttribute("listaConta", lista);
+			// Colocando a lista como atributo para o jsp acesssa como parametro
+			request.setAttribute("listaConta", lista);
 
-				// Encaminhando para o jsp
-				request.getRequestDispatcher("contas/contaListar.jsp").forward(request, response);
-			}
-		 else if(acao.equals("editarConta")){
-			 int id = Integer.parseInt(request.getParameter("id"));
-			 ContaDAO contaDAO = new ContaDAO();
-			 
-			 ContaVO conta = contaDAO.consultarConta(id); 
-			 
-			 request.setAttribute("conta", conta);
-			 
-			 request.getRequestDispatcher("contas/contaEditar.jsp").forward(request, response);
-			 
-		 }
+			// Encaminhando para o jsp
+			request.getRequestDispatcher("contas/contaListar.jsp").forward(request, response);
 		
+	/** EDITAR CONTAS */		
+			
+		} else if (acao.equals("editarConta")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			ContaDAO contaDAO = new ContaDAO();
+
+			ContaVO conta = contaDAO.consultarConta(id);
+
+			request.setAttribute("conta", conta);
+
+			request.getRequestDispatcher("contas/contaEditar.jsp").forward(request, response);
+
+		}
 
 	}
 }
