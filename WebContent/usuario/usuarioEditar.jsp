@@ -10,25 +10,60 @@
 <jsp:include page="../cabecalho.jsp"></jsp:include>
 <body>
 	<jsp:include page="../menu.jsp"></jsp:include>
-	GestoEcon
-	<br> Editar Usuario.
-	<br>
-	<br>
-	<center>
-		<form action="ManterUsuario" method="post">
-			<input type="hidden" name="acao" value="atualizarUsuario"> 
-			<input type="hidden" name="email" value="<%=objUsuario.getEmail()%>">
-
-			Email:<input type="email" name="email" value="<%=objUsuario.getEmail()%>"><br>
-			Nome: <input type="text" name="nome" value="<%=objUsuario.getNome()%>"><br>
-			Senha: <input type="password" name="senha" value="<%=objUsuario.getSenha()%>"><br>
-			 <input type="submit" value="Salvar"><input type="reset"
-			value="Voltar"><a href="ManterUsuario?acao=listarUsuario">
-				"VOLTAR"</a> <BR>
-		</form>
-	</center>
 
 
+	<div class="container">
+		<div class="col-md-8 col-md-offset-2">
 
+			<form class="form-horizontal" action="/gestoecon/ManterUsuario" method="post">
+				<input type="hidden" name="acao" value="alterarUsuario"> <input
+					type="hidden" name="email" value="<%=objUsuario.getEmail()%>">
+				<fieldset>
+
+					<!-- Form Name -->
+					<legend>Editar Usuário</legend>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="email">E-mail</label>
+						<div class="col-md-4">
+							<input id="email" name="email" type="text"
+								placeholder="Digite o seu e-mail" class="form-control input-md"
+								required="" value="<%=objUsuario.getEmail()%>">
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="nome">Nome</label>
+						<div class="col-md-4">
+							<input id="nome" name="nome" type="text"
+								placeholder="Digite o seu nome" class="form-control input-md"
+								required="" value="<%=objUsuario.getNome()%>">
+						</div>
+					</div>
+
+					<!-- Password input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="senha">Senha</label>
+						<div class="col-md-4">
+							<input id="senha" name="senha" type="password"
+								placeholder="Digite sua senha" class="form-control input-md"
+								required="" value="<%=objUsuario.getSenha()%>">
+						</div>
+					</div>
+
+					<!-- Button (Double) -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="cadastrar"></label>
+						<div class="col-md-8">
+							<button id="cadastrar" name="cadastrar" class="btn btn-primary">Salvar</button>
+							<button id="limpar" name="limpar" class="btn btn-danger">Limpar</button>
+							<a href="ManterUsuario?acao=listarUsuario">VOLTAR</a>
+						</div>
+					</div>
+
+				</fieldset>
+			</form>
 </body>
 </html>

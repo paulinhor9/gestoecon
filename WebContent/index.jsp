@@ -15,7 +15,16 @@
 
 		<center>
 
-			<div class="row">
+
+
+ <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading panel-title text-center">EFETUAR LOGIN</div>
+
+                <div class="panel-body">
+                    
+                    
+                    <div class="row">
 				<form action="ManterUsuario" method="post" class="form-horizontal">
 
 					<div class="form-group">
@@ -33,17 +42,20 @@
 								required="true">
 						</div>
 					</div>
-
+<center>
 					<input type="hidden" name="acao" value="autenticarUsuario">
-					<input type="submit" value="Entrar" class="btn btn-success">
-					<input type="reset" value="Limpar" class="btn btn-warning">
-					<br>
+					<input type="submit" value="Entrar" class="btn btn-primary">
+					<input type="reset" value="Limpar" class="btn btn-danger">
+					<br> </center>
 				</form>
 				<br>
 			</div>
-	</div>
+                                     
+                </div>
 
-
+                <div class="panel-footer"></div>
+            </div>
+        </div>
 
 	</center>
 

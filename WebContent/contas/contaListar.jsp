@@ -9,7 +9,6 @@
 <html>
 <head>
 <%
-	
 	List<ContaVO> contas = (List<ContaVO>) request.getAttribute("listaConta");
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,8 +30,10 @@
 		<div class="row">
 
 			<div class="col-md-8 col-md-offset-2">
-			
-				<a href="contas/contaInserir.jsp" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Adicinar nova</a><br/><br/>
+
+				<a href="contas/contaInserir.jsp" class="btn btn-primary"><i
+					class="glyphicon glyphicon-plus"></i>Adicinar nova</a><br />
+				<br />
 
 				<table class="table table-bordered table-striped table-hover">
 					<thead>
@@ -54,13 +55,15 @@
 						<tr>
 							<td><%=conta.getNome()%></td>
 							<td><%=conta.getSaldo()%></td>
-							<td><a href="ManterConta?acao=editarConta&id=<%=conta.getId()%>" class="btn btn-warning">Alterar</a></td>
+							<td><a
+								href="ManterConta?acao=editarConta&id=<%=conta.getId()%>"
+								class="btn btn-warning">Alterar</a></td>
 							<td>
 								<form action="ManterConta" method="post">
-									<input type="hidden" name="acao" value="excluirConta"/>
-									<input type="hidden" name="id" value="<%= conta.getId() %>"/>
-									
-									<input type="submit" value="Excluir" class="btn btn-danger"/>
+									<input type="hidden" name="acao" value="excluirConta" /> <input
+										type="hidden" name="id" value="<%=conta.getId()%>" /> <input
+										type="submit" value="Excluir" class="btn btn-danger" />
+
 								</form>
 							</td>
 						</tr>
@@ -72,7 +75,10 @@
 					</tr>
 
 				</table>
-<center><li class="btn btn-home"><a href="Home.jsp"> Página Inicial</a></li> </center>
+				<center>
+					<li class="btn btn-home"><a href="Home.jsp"> Página
+							Inicial</a></li>
+				</center>
 			</div>
 		</div>
 	</div>

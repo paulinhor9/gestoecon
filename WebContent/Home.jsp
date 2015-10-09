@@ -25,11 +25,19 @@
 
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="ManterUsuario?acao=listarUsuario"> USUARIO</a></li>
+                     	<li class="list-group-item"><a href="ManterUsuario?acao=listarUsuario"> USUARIO</a></li>
                         <li class="list-group-item"><a href="ManterConta?acao=listarConta">  CONTAS</a></li>
                         <li class="list-group-item"><a href="movimentos/movimentoGerenciar.jsp"> MOVIMENTO</a></li>
-                        <li class="list-group-item"><a href=""> EXTRATO</a></li>
-                    </ul>       
+                        <li class="list-group-item"><a href=""> EXTRATO</a></li> <br></br>
+                    	
+                    
+                    
+                        <center><a href="ManterUsuario?acao=listarUsuario" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-user"></span> USUÁRIO</a>
+						<a href="ManterConta?acao=listarConta" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-usd"></span> CONTAS</a>                    
+                   		<a href="movimentos/movimentoGerenciar.jsp" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-plus-sign"></span> MOVIMENTOS</a>
+						<a href="#" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-calendar"></span> EXTRATO</a>                    
+                    </ul> 
+                          </center>
                 </div>
 
                 <div class="panel-footer"></div>

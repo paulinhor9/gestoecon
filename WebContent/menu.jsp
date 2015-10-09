@@ -7,7 +7,11 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">GESTOECON</a>
+			<%if(session.getAttribute("usuarioOK") == null){ %>
+				<a class="navbar-brand" href="/gestoecon/index.jsp">GESTOECON</a>
+			<%}else{ %>
+				<a class="navbar-brand" href="/gestoecon/Home.jsp">GESTOECON</a>
+			<%} %>
 		</div>
 
 		<div class="collapse navbar-collapse"
@@ -18,17 +22,21 @@
 
 			<ul class="nav navbar-nav navbar-right">
 
-				<li><a href="usuario/usuarioInserir.jsp"><i
+				<%
+					if (session.getAttribute("usuarioOK") == null) {
+				%>
+				<li><a href="/gestoecon/usuario/usuarioInserir.jsp"><i
 						class="glyphicon glyphicon-plus"></i> Cadastre-se</a></li>
+
+				<%
+					}
+				%>
+
 				<%
 					if (session.getAttribute("usuarioOK") != null) {
 				%>
-				<li>
-					<form action="ManterUsuario" method="post">
-						<input type="hidden" name="acao" value="sair" /> <input
-							type="submit" class="btn btn-link" value="Sair">
-					</form>
-				</li>
+				<li> <a href="ManterUsuario?acao=sair">
+						<i class="glyphicon glyphicon-log-out"></i> Sair</a> </li>
 				<%
 					}
 				%>

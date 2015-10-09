@@ -93,7 +93,7 @@ public class UsuarioDAO {
 	// ALTERANDO USUARIO DO BANCO DE DADOS.
 
 	public static void alterarUsuario(UsuarioVO objUsuario ) {
-		String sqlAtualizacao = "update usuario set email=? nome =?, senha =? where email = ?";
+		String sqlAtualizacao = "update usuario set email=?, nome =?, senha =? where email = ?";
 		PreparedStatement pstm = null;
 		Connection objCon = null;
 
@@ -102,7 +102,7 @@ public class UsuarioDAO {
 			pstm = objCon.prepareStatement(sqlAtualizacao);
 			pstm.setString(1, objUsuario.getEmail());
 			pstm.setString(2, objUsuario.getNome());
-			pstm.setString(2, objUsuario.getSenha());
+			pstm.setString(3, objUsuario.getSenha());
 			pstm.setString(4, objUsuario.getEmail());
 			
 			

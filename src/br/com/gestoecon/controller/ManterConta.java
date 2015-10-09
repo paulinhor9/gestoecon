@@ -63,7 +63,7 @@ public class ManterConta extends HttpServlet {
 			
 		/** ATUALIZAR CONTA */	
 
-		} else if (acao.equals("atualizarConta")) {
+		} else if (acao.equals("alterarConta")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			String nome = request.getParameter("nome");
 			Double saldo = Double.parseDouble(request.getParameter("saldo"));

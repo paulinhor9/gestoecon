@@ -42,31 +42,17 @@ public class ManterUsuario extends HttpServlet {
 
 			UsuarioVO objUsuario = br.com.gestoecon.dao.UsuarioDAO.consultarUsuario(email);
 			RequestDispatcher direcionador;
-			if (objUsuario.getSenha().trim().equals(senha.trim())) {
-				request.getSession().setAttribute("usuarioOK", objUsuario);
-				// request.getRequestDispatcher("Home.jsp").forward(request,
-				// response);
-				response.sendRedirect("Home.jsp");
-			} else
-				// request.getRequestDispatcher("falhaLogin.jsp").forward(request,
-				// response);
-				response.sendRedirect("falhaLogin.jsp");
-		}
+			if (objUsuario != null) {
+				if (objUsuario.getSenha().trim().equals(senha.trim())) {
+					request.getSession().setAttribute("usuarioOK", objUsuario);
+					response.sendRedirect("Home.jsp");
+				} else
+					// request.getRequestDispatcher("falhaLogin.jsp").forward(request,
+					// response);
+					response.sendRedirect("falhaLogin.jsp");
 
-		/**
-		 * FINALIZAR SESSÃO.
-		 */
-
-		if (acao.equals("sair")) {
-			HttpSession session = request.getSession();
-			Object usuarioLogado = session.getAttribute("usuarioOK");
-			if (usuarioLogado != null) {
-				session.removeAttribute("usuarioOk");
-				session.invalidate();
-
-				response.sendRedirect("index.jsp");
 			} else {
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("falhaLogin.jsp");
 			}
 		}
 
@@ -93,21 +79,20 @@ public class ManterUsuario extends HttpServlet {
 			String email = request.getParameter("email");
 			UsuarioVO objUsuario = new UsuarioVO();
 			objUsuario.setEmail(email);
-			
+
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
 			usuarioDAO.excluirUsuario(objUsuario);
 			response.sendRedirect("usuario/usuarioExcluirSucesso.jsp");
-			
 
 		/** ATUALIZAR USUARIO */
-			
-			}	else if (acao.equals("atualizarUsuario")) {
+
+		} else if (acao.equals("alterarUsuario")) {
 			String email = request.getParameter("email");
 			String nome = request.getParameter("nome");
 			String senha = request.getParameter("senha");
 
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			
+
 			UsuarioVO objUsuario = usuarioDAO.consultarUsuario(email);
 
 			objUsuario.setEmail(email);
@@ -127,8 +112,8 @@ public class ManterUsuario extends HttpServlet {
 
 		String acao = request.getParameter("acao");
 
-	/** LISTA USUARIO */	
-		
+		/** LISTA USUARIO */
+
 		if (acao.equals("listarUsuario")) {
 
 			// BUscando a lista do banco
@@ -139,18 +124,34 @@ public class ManterUsuario extends HttpServlet {
 
 			// Encaminhando para o jsp
 			request.getRequestDispatcher("usuario/usuarioListar.jsp").forward(request, response);
-		
-	/** EDITAR USUARIO */	
-			
+
+			/** EDITAR USUARIO */
+
 		} else if (acao.equals("editarUsuario")) {
 			String email = request.getParameter("email");
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			
+
 			UsuarioVO objUsuario = usuarioDAO.consultarUsuario(email);
-			
+
 			request.setAttribute("usuarioOk", objUsuario);
 			request.getRequestDispatcher("usuario/usuarioEditar.jsp").forward(request, response);
 
+		}
+		/**
+		 * FINALIZAR SESSÃO.
+		 */
+
+		else if (acao.equals("sair")) {
+			HttpSession session = request.getSession();
+			Object usuarioLogado = session.getAttribute("usuarioOK");
+			if (usuarioLogado != null) {
+				session.removeAttribute("usuarioOk");
+				session.invalidate();
+
+				response.sendRedirect("index.jsp");
+			} else {
+				response.sendRedirect("index.jsp");
+			}
 		}
 
 	}

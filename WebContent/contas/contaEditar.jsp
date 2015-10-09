@@ -9,26 +9,52 @@
 </head>
 <jsp:include page="../cabecalho.jsp"></jsp:include>
 <body>
-<jsp:include page="../menu.jsp"></jsp:include>
-	GestoEcon
-	<br> Editar Conta. 
-	<br>
-	<br>
-	<center>
-		<form action="ManterConta" method="post">
-			<input type="hidden" name="acao" value="atualizarConta">
-			<input type="hidden" name="id" value="<%=conta.getId()%>">
-			
-			 Conta:<input type="text" name="nome" value="<%=conta.getNome()%>"><br> Saldo: 
-			<input type="text" name="saldo" value="<%=conta.getSaldo()%>"><br>
-			<br>
-			<input type="submit" value="Salvar"><input type="reset"
-				value="Limpar"><a href="ManterConta?acao=listarConta">
-				"VOLTAR"</a> <BR>
-		</form>
-	</center>
+	<jsp:include page="../menu.jsp"></jsp:include>
 
+	<div class="container">
+		<div class="col-md-8 col-md-offset-2">
 
+			<form class="form-horizontal" action="/gestoecon/ManterConta"
+				method="post">
+				<input type="hidden" name="acao" value="alterarConta"> <input
+					type="hidden" name="id" value="<%=conta.getId()%>">
+				<fieldset>
 
+					<!-- Form Name -->
+					<legend>Editar Conta</legend>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="nome">Conta</label>
+						<div class="col-md-4">
+							<input id="nome" name="nome" type="text"
+								placeholder="Digite o nome da conta"
+								class="form-control input-md" required=""
+								value="<%=conta.getNome()%>">
+						</div>
+					</div>
+
+					<!-- Password input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="saldo">Saldo</label>
+						<div class="col-md-4">
+							<input id="saldo" name="saldo" type="double"
+								placeholder="Saldo da conta" class="form-control input-md"
+								required="" value="<%=conta.getSaldo()%>">
+						</div>
+					</div>
+
+					<!-- Button (Double) -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="cadastrar"></label>
+						<div class="col-md-8">
+							<button type="submit" value="Salvar" class="btn btn-primary">Salvar</button>
+							<button type="reset" value="Entrar" class="btn btn-danger">Limpar</button>
+							<a href="ManterConta?acao=listarConta">VOLTAR</a>
+						</div>
+					</div>
+
+				</fieldset>
+			</form>
 </body>
 </html>
