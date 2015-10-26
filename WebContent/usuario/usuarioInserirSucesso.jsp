@@ -16,7 +16,7 @@
 	</CENTER>
 
 	<!-- REDIRECIONADOR -->
-	<meta http-equiv="refresh" content="3; url=../Home.jsp">
+	<meta http-equiv="refresh" content="3; url=../index.jsp">
 	
 </body>
 </html>

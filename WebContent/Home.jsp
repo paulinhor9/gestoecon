@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"%>
+
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -30,7 +31,6 @@
                         <li class="list-group-item"><a href="movimentos/movimentoGerenciar.jsp"> MOVIMENTO</a></li>
                         <li class="list-group-item"><a href=""> EXTRATO</a></li> <br></br>
                     	
-                    
                     
                         <center><a href="ManterUsuario?acao=listarUsuario" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-user"></span> USUÁRIO</a>
 						<a href="ManterConta?acao=listarConta" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-usd"></span> CONTAS</a>                    

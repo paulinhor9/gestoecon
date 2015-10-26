@@ -12,9 +12,9 @@
 <%
   UsuarioVO objUsuario = (UsuarioVO) session.getAttribute("usuarioOK");
   if (objUsuario==null)
-	  response.sendRedirect("Home.jsp");
+	  response.sendRedirect("index.jsp");
   else{
-	  response.sendRedirect("falhaLogin.jsp");
+	  response.sendRedirect("Home.jsp");
   }
 %>
 

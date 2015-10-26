@@ -88,7 +88,7 @@ public class ContaDAO {
 	}
 
 
-	// ALTERANDO CONTA DO BANCO DE DADOS.
+	/** ALTERANDO CONTA NO BANCO */
 
 	public static void alterarConta(ContaVO objConta) {
 		String sqlAtualizacao = "update conta set nome =?, saldo =? where id = ?";
@@ -114,7 +114,7 @@ public class ContaDAO {
 		}
 	}
 
-	// CONSULTAR USUARIO NO BANCO DE DADOS.
+	/** CONSULTAR CONTA NO BANCO DE DADOS. */
 
 	public static ContaVO consultarConta(int id) {
 		ContaVO objConta = new ContaVO();
