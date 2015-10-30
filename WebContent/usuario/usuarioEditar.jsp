@@ -23,15 +23,20 @@
 					<!-- Form Name -->
 					<legend>Editar Usuário</legend>
 
-					<!-- Text input-->
-					<div class="form-group">
+
+ 	<!-- Text input--> 
+ 	<!-- 
+				<div class="form-group">
 						<label class="col-md-4 control-label" for="email">E-mail</label>
 						<div class="col-md-4">
 							<input id="email" name="email" type="text"
 								placeholder="Digite o seu e-mail" class="form-control input-md"
 								required="" value="<%=objUsuario.getEmail()%>">
 						</div>
-					</div>
+					</div> 
+					
+					
+					-->
 
 					<!-- Text input-->
 					<div class="form-group">
@@ -57,9 +62,9 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="cadastrar"></label>
 						<div class="col-md-8">
-							<button id="cadastrar" name="cadastrar" class="btn btn-primary">Salvar</button>
-							<button id="limpar" name="limpar" class="btn btn-danger">Limpar</button>
-							<a href="ManterUsuario?acao=listarUsuario">VOLTAR</a>
+							<button type="submit" value="Salvar" class="btn btn-primary">Salvar</button>
+							<button type="reset" value="Limpar" class="btn btn-danger">Limpar</button>
+							<a href="ManterUsuario?acao=listarUsuario"> <button class="btn btn-warning">Voltar</button></a>
 						</div>
 					</div>
 

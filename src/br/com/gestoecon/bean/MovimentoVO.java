@@ -4,17 +4,35 @@ import java.util.Date;
 
 public class MovimentoVO {
 
-	private String descricao;
+	private int id_movimento;
+	private String nome;
 	private double valor;
-	private Date dataMovimento;
-	private tipoMovimento tipo;
+	private Date data;
+	private boolean tipo;
 
-	public String getDescricao() {
-		return descricao;
+	public MovimentoVO() {
+		super();
+		this.id_movimento = id_movimento;
+		this.nome = nome;
+		this.valor = valor;
+		this.data = data;
+		this.tipo = tipo;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public int getId_movimento() {
+		return id_movimento;
+	}
+
+	public void setId_movimento(int id_movimento) {
+		this.id_movimento = id_movimento;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public double getValor() {
@@ -25,19 +43,19 @@ public class MovimentoVO {
 		this.valor = valor;
 	}
 
-	public Date getDataMovimento() {
-		return dataMovimento;
+	public Date getData() {
+		return data;
 	}
 
-	public void setDataMovimento(Date dataMovimento) {
-		this.dataMovimento = dataMovimento;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
-	public tipoMovimento getTipo() {
+	public boolean isTipo() {
 		return tipo;
 	}
 
-	public void setTipo(tipoMovimento tipo) {
+	public void setTipo(boolean tipo) {
 		this.tipo = tipo;
 	}
 

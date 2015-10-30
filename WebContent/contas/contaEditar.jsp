@@ -49,8 +49,9 @@
 						<label class="col-md-4 control-label" for="cadastrar"></label>
 						<div class="col-md-8">
 							<button type="submit" value="Salvar" class="btn btn-primary">Salvar</button>
-							<button type="reset" value="Entrar" class="btn btn-danger">Limpar</button>
-							<a href="ManterConta?acao=listarConta">VOLTAR</a>
+							<button type="reset" value="Limpar" class="btn btn-danger">Limpar</button>
+							<a href="ManterConta?acao=listarConta"> <button class="btn btn-warning">Voltar</button></a>
+							
 						</div>
 					</div>
 

@@ -37,7 +37,7 @@ public class ContaDAO {
 	/** EXCLUIR CONTA DO BANCO DE DADOS. */
 
 	public void excluirConta(ContaVO objConta) {
-		String sqlExclusao = "delete from conta where id = ?";
+		String sqlExclusao = "delete from conta where id_conta = ?";
 		PreparedStatement pstm = null;
 		Connection objCon = null;
 
@@ -73,7 +73,7 @@ public class ContaDAO {
 			// Tirando do Resultset e colocando no objeto usuario
 			while (rs.next()) {
 				ContaVO conta = new ContaVO();
-				conta.setId(rs.getInt("id"));
+				conta.setId(rs.getInt("id_conta"));
 				conta.setNome(rs.getString("nome"));
 				conta.setSaldo(rs.getDouble("saldo"));
 
@@ -91,7 +91,7 @@ public class ContaDAO {
 	/** ALTERANDO CONTA NO BANCO */
 
 	public static void alterarConta(ContaVO objConta) {
-		String sqlAtualizacao = "update conta set nome =?, saldo =? where id = ?";
+		String sqlAtualizacao = "update conta set nome =?, saldo =? where id_conta = ?";
 		PreparedStatement pstm = null;
 		Connection objCon = null;
 
@@ -118,7 +118,7 @@ public class ContaDAO {
 
 	public static ContaVO consultarConta(int id) {
 		ContaVO objConta = new ContaVO();
-		String sqlConsulta = "select  * from conta where id = ?";
+		String sqlConsulta = "select  * from conta where id_conta = ?";
 		PreparedStatement pstm = null;
 		Connection objCon = null;
 		ResultSet rs = null;
@@ -133,7 +133,7 @@ public class ContaDAO {
 				objConta = null;
 				System.out.println("Conta não consta na base de dados!");
 			} else {
-				objConta.setId(rs.getInt("id"));
+				objConta.setId(rs.getInt("id_conta"));
 				objConta.setNome(rs.getString("nome"));
 				objConta.setSaldo(rs.getDouble("saldo"));
 			}

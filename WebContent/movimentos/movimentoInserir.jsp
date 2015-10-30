@@ -1,37 +1,111 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>INSERIR NOVO MOVIMENTO</title>
+<title>GestoEcon - Cadastrar Movimento</title>
+<jsp:include page="../cabecalho.jsp" />
 </head>
 <body>
+	<jsp:include page="../menu.jsp" />
 
-<h3>INSERIR MOVIMENTO</h3>
-<center>
- 	<form action="ManterMovimento" method="post">
- 	
- 	Nome: <input  type="text" name= "descricao"/>
- 	<br />
- 	Valor: <input  type="text" name= "valor"/>
- 	<br />
- 	Tipo: <select name="tipo">  
- 	<option  value = "entrada"> Entrada</option>
- 	<option  value = "saida"> Saída</option>
- 	</select>
- 	</br>
- 	<input type  = "hidden" name = "acao" value ="inserirMovimento">
- 	<input type="submit" value= "Inserir"/> s
- 	<input type="reset" value= "Limpar"/>
- 	
- 	
- 	</form>
- 	
- </center>
+	<div class="container">
+		<div class="col-md-8 col-md-offset-2">
+
+			<form class="form-horizontal" action="../ManterMovimento"
+				method="post">
+				<input type="hidden" name="acao" value="inserirMovimento">
+
+				<fieldset>
+
+					<!-- Form Name -->
+
+					<legend>Cadastrar Movimento</legend>
+
+					<!-- Select Basic -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="conta">Conta</label>
+						<div class="col-md-4">
+							<select id="conta" name="conta" class="form-control">
+								<option value="1">Banco do Brasil</option>
+								<option value="2">Bradesco</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="inserirMovimento">Nome</label>
+						<div class="col-md-4">
+							<input id="nome" name="nome" type="text"
+								placeholder="Descrição do movimento."
+								class="form-control input-md" required="">
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="valor">Valor</label>
+						<div class="col-md-4">
+							<input id="valor" name="valor" type="text"
+								placeholder="Valor do movimento" class="form-control input-md"
+								required="required">
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="data">Data</label>
+						<div class="col-md-4">
+							<input type="date" name="data" type="text"
+								placeholder="Data do movimento" class="form-control input-md"
+								required="required">
+
+						</div>
+					</div>
 
 
+
+					<!-- Select Basic -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="tipo"> Tipo</label>
+						<div class="col-md-4">
+							<select id="tipo" name="tipo" class="form-control">
+								<option value="1">Entrada</option>
+								<option value="2">Saída</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Button (Double) -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="cadastrar"></label>
+						<div class="col-md-8">
+							<button type="submit" name="cadastrar" class="btn btn-success">CADASTRAR</button>
+							<button type="reset" name="limpar" class="btn btn-danger">LIMPAR</button>
+
+						</div>
+					</div>
+					<center>
+						<li class="btn btn-home"><a href="movimentoGerenciar.jsp">
+								VOLTAR</a></li>
+					</center>
+				</fieldset>
+			</form>
+
+		</div>
+	</div>
 
 </body>
+
+
+
+
+
+
+
+
+
+
+
 </html>
